@@ -1,37 +1,59 @@
-
 import { TypeAnimation } from "react-type-animation";
-import About from "./About";
 
 const Home = () => {
   return (
-    <>
-    <div className="flex flex-col justify-center h-screen text-white text-left px-4 pl-20 pb-50 ">
-      <h1 className="text-3xl md:text-5xl font-bold mb-4">
-        Hi, my name is <span className="text-indigo-400">Devesh</span>
-      </h1>
-      <h2 className="text-xl md:text-3xl">
-        and I am a{" "}
-        <TypeAnimation
-          sequence={[
-            "Frontend", 2000,
-            "React", 2000,
-            "JavaScript", 2000,
-            "Python", 2000,
-            "Full Stack", 2000,
-          ]}
-          wrapper="span"
-          speed={50}
-          repeat={Infinity}
-          className="text-indigo-400"
-        />{" "}
-        developer.
-      </h2>
+    <div className="w-full min-h-screen flex flex-col items-center justify-start pt-25 overflow-x-hidden text-white px-4 md:px-12">
+      {/* Row: Intro + Image */}
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-8 mt-4">
+        
+        {/* LEFT: Intro */}
+        <div className="flex flex-col text-left md:w-1/2">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+            Hi, my name is <span className="text-indigo-400">Devesh</span>
+          </h1>
+
+          <h2 className="text-xl md:text-3xl mb-6">
+            and I am a{" "}
+            <TypeAnimation
+              sequence={[
+                "Frontend", 2000,
+                "React", 2000,
+                "JavaScript", 2000,
+                "Python", 2000,
+                "Full Stack", 2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="text-indigo-400"
+            />{" "}
+            developer.
+          </h2>
+        </div>
+
+        {/* RIGHT: Image */}
+        <div className="md:w-1/2 flex justify-center">
+          <img
+            src="/lap_kid_noBG.png"
+            alt="Developer"
+            className="w-60 md:w-80"
+          />
+        </div>
+      </div>
+
+      {/* Download Button */}
+      <div className="mt-8 text-center">
+        <h3 className="text-2xl font-semibold mb-3">Download</h3>
+        <a
+          href="/Devesh_Kumar.pdf"
+          download
+          className="bg-purple-600  text-white px-6 py-3 rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300"
+        >
+          Resume
+        </a>
+      </div>
     </div>
-    
-    
-    </>
   );
 };
 
 export default Home;
-
