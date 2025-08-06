@@ -3,6 +3,7 @@ import AppRouter from "./Router"
 import Navbar from "./components/Navbar";
 import StarBackground from "./components/BackGround";
 
+
 function App() {
  
   return (
@@ -13,6 +14,7 @@ function App() {
 
         <div className="relative z-10">
           <Navbar />
+          
         
         <AppRouter />
         </div></div>
