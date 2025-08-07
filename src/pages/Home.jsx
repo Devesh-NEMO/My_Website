@@ -2,7 +2,7 @@ import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start pt-25 overflow-x-hidden text-white px-4 md:px-12">
+    <div className="w-full  flex flex-col items-center justify-start pt-25 overflow-x-hidden text-white px-4 md:px-12">
       {/* Row: Intro + Image */}
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-8 mt-4">
         
@@ -44,7 +44,7 @@ const Home = () => {
       </div>
 
       {/* Download Button */}
-      <div className="mt-8 text-center">
+      <div className="mt-8 text-center pb-5">
         <h3 className="text-2xl font-semibold mb-3">Download</h3>
         <a
           href="/Devesh_Kumar.pdf"
