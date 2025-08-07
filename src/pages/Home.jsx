@@ -16,11 +16,13 @@ const Home = () => {
             and I am a{" "}
             <TypeAnimation
               sequence={[
-                "Frontend", 2000,
+                
                 "React", 2000,
                 "JavaScript", 2000,
+                "Gen-Ai", 2000,
                 "Python", 2000,
-                "Full Stack", 2000,
+                "Frontend", 2000,
+                
               ]}
               wrapper="span"
               speed={50}
@@ -47,12 +49,15 @@ const Home = () => {
         <a
           href="/Devesh_Kumar.pdf"
           download
-          className="bg-purple-600  text-white px-6 py-3 rounded-lg shadow-lg hover:bg-purple-500 transition-all duration-300"
+          className="bg-purple-600  text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-purple-900 transition-all duration-300"
         >
           Resume
         </a>
       </div>
+      
     </div>
+
+    
   );
 };
 

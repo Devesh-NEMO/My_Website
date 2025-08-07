@@ -1,81 +1,120 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const form = useRef();
+  const [status, setStatus] = useState(""); // success | error | loading
+  const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ 
-      ...formData, 
-      [e.target.name]: e.target.value 
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    // You can integrate email sending service here like EmailJS or backend API
-    alert("Thank you for reaching out! 🚀");
-    setFormData({ name: "", email: "", message: "" });
+
+    const formData = new FormData(form.current);
+    const userEmail = formData.get("email");
+
+    // ✅ Basic email validation
+    if (!/\S+@\S+\.\S+/.test(userEmail)) {
+      setStatus("error");
+      setMessage("❌ Invalid email address.");
+      return;
+    }
+
+    // ⏳ Start loading
+    setStatus("loading");
+
+    const now = new Date();
+    formData.append("time", now.toLocaleString());
+
+    try {
+      await emailjs.sendForm(
+        "service_ojtosnk",
+        "template_pgi65fx",
+        form.current,
+        "jBYIFONiQw5l8xaZB"
+      );
+
+      setStatus("success");
+      setMessage("✅ Message sent successfully!");
+      form.current.reset();
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setStatus("error");
+      setMessage("❌ Failed to send message. Try again.");
+    }
   };
 
   return (
-    <section className="contact px-6 py-12 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6">📬 Contact Me</h1>
+    <section id="contact" className="px-6 py-12 max-w-4xl mx-auto">
+      <h2 className="text-4xl text-center font-bold mb-6">📬 Contact Me</h2>
 
-      <p className="text-lg mb-8">
-        Have a question, idea, or just want to connect? Drop a message below or reach out via my socials — I'm always open to chat!
-      </p>
+      {/* 🔔 Status Message */}
+      {status && status !== "loading" && (
+        <div
+          className={`mb-4 p-3 text-sm rounded-md font-medium text-center ${
+            status === "success"
+              ? "bg-green-500 text-white"
+              : "bg-red-500 text-white"
+          }`}
+        >
+          {message}
+        </div>
+      )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label htmlFor="name" className="block font-medium mb-1">Name</label>
+      <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 flex flex-col md:flex-row gap-10">
+        {/* Left Image */}
+        <div className="md:w-1/2 w-full">
+          <img
+            src="/contact_me.avif"
+            alt="Contact"
+            className="w-full h-auto rounded-lg"
+          />
+        </div>
+
+        {/* Right Form */}
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="flex flex-col gap-4 w-full md:w-1/2"
+        >
           <input
             type="text"
             name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-md px-4 py-2"
+            placeholder="Your Name"
+            className="p-3 rounded-md bg-black/20 border border-gray-600 text-white placeholder:text-gray-300"
           />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block font-medium mb-1">Email</label>
           <input
             type="email"
             name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-md px-4 py-2"
+            placeholder="Your Email"
+            className="p-3 rounded-md bg-black/20 border border-gray-600 text-white placeholder:text-gray-300"
           />
-        </div>
-
-        <div>
-          <label htmlFor="message" className="block font-medium mb-1">Message</label>
           <textarea
             name="message"
-            id="message"
-            rows="5"
-            value={formData.message}
-            onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-md px-4 py-2"
+            placeholder="Your Message"
+            rows="5"
+            className="p-3 rounded-md bg-black/20 border border-gray-600 text-white placeholder:text-gray-300"
           ></textarea>
-        </div>
 
-        <button
-          type="submit"
-          className="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-800 transition"
-        >
-          Send Message
-        </button>
-      </form>
+          {/* Hidden fields */}
+          <input type="hidden" name="time" />
+          <input type="hidden" name="_replyto" value="" />
+          <input type="hidden" name="_cc" value="" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="box" />
+
+          {/* ⏳ Submit Button */}
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-md font-semibold transition disabled:opacity-50"
+          >
+            {status === "loading" ? "Sending..." : "Send Message 🚀"}
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
