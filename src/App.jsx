@@ -7,16 +7,18 @@ import Footer from "./components/Footer";
 function App() {
   return (
 <BrowserRouter>
-  <div className="relative min-h-screen bg-black text-white flex flex-col">
-    <StarBackground />
+  <div className="relative bg-black text-white flex flex-col min-h-screen">
+  <StarBackground />
 
-    <div className="relative z-10 flex-grow">
-      <Navbar />
-      <AppRouter />
-    </div>
-
-    <Footer />
+  <div className="relative z-10 flex-grow overflow-y-auto">
+    <Navbar />
+    <AppRouter />
   </div>
+
+  <Footer />
+</div>
+
+  
 </BrowserRouter>
 
   );

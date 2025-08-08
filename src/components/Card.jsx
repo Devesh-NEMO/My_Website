@@ -1,4 +1,4 @@
-const ProjectCard = ({ title, description, tech = [], link, image }) => {
+const ProjectCard = ({ title, description, tech = [], link, link1, image }) => {
   return (
     <div className="bg-[#1f1f1f] border border-purple-700 rounded-2xl shadow-lg p-6 max-w-md transition-transform duration-300 hover:scale-105 hover:shadow-purple-500/40">
       
@@ -32,6 +32,14 @@ const ProjectCard = ({ title, description, tech = [], link, image }) => {
         className="inline-block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition"
       >
         View Project
+      </a>
+      <a
+        href={link1}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block bg-gray-600 text-white ml-4 px-5 py-2 rounded-lg hover:bg-purple-700 transition"
+      >
+        Source Code
       </a>
     </div>
   );
