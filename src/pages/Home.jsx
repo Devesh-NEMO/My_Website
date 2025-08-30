@@ -1,8 +1,9 @@
 import { TypeAnimation } from "react-type-animation";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Home = () => {
   return (
-    <div className="w-full  flex flex-col items-center justify-start pt-25 overflow-x-hidden text-white px-4 md:px-12">
+    <div className="w-full flex flex-col items-center justify-start pt-25 overflow-x-hidden text-white px-4 md:px-12">
       {/* Row: Intro + Image */}
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-8 mt-4">
         
@@ -16,13 +17,11 @@ const Home = () => {
             and I am a{" "}
             <TypeAnimation
               sequence={[
-                
                 "React", 2000,
                 "JavaScript", 2000,
                 "Gen-Ai", 2000,
                 "Python", 2000,
                 "Frontend", 2000,
-                
               ]}
               wrapper="span"
               speed={50}
@@ -31,6 +30,26 @@ const Home = () => {
             />{" "}
             developer.
           </h2>
+
+          {/* Social Links */}
+          <div className="flex gap-6 mt-4 ml-45">
+            <a
+              href="https://github.com/Devesh-NEMO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-3xl hover:text-indigo-400 transition-colors"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dk2002/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-3xl hover:text-indigo-400 transition-colors"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
         </div>
 
         {/* RIGHT: Image */}
@@ -49,15 +68,13 @@ const Home = () => {
         <a
           href="/Devesh_Kumar.pdf"
           download
-          className="bg-purple-600  text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-purple-900 transition-all duration-300"
+          className="bg-purple-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-purple-900 transition-all duration-300"
         >
           Resume
         </a>
       </div>
       
     </div>
-
-    
   );
 };
 

@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="bg-white/5 backdrop-blur-md border-t border-white/10 text-center text-gray-300 py-4 mt-auto text-sm flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6">
-      <p>
+    <footer className="bg-white/5 backdrop-blur-md border-t border-white/10 text-gray-300 py-4 mt-auto text-sm flex flex-col md:flex-row items-center justify-between px-6 gap-3 md:gap-6 text-center md:text-left">
+      <p className="text-xs sm:text-sm">
         © {new Date().getFullYear()} Devesh Kumar. All rights reserved.
       </p>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap justify-center md:justify-end">
         <a
           href="https://github.com/Devesh-NEMO"
           target="_blank"
@@ -21,7 +21,6 @@ const Footer = () => {
         >
           LinkedIn
         </a>
-        
       </div>
     </footer>
   );
